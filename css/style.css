@@ -559,6 +559,6 @@ input[type="checkbox"]:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba
 /* ---------- logo ---------- */
 .brand-logo {
   width: 48px; height: 48px; flex: 0 0 auto; object-fit: contain;
-  border-radius: 10px;
+  border-radius: 7px;
 }
 @media (max-width: 720px) { .brand-logo { width: 42px; height: 42px; } }
