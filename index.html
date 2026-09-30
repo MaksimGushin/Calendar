@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Смены — съёмочный календарь</title>
+<meta name="description" content="Съёмочный календарь: занятость, заработок, платежи и напоминания.">
+<link rel="icon" type="image/png" href="img/favicon.png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#17181a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Календарь">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="app">
+
+  <header class="topbar">
+    <div class="brand">
+      <img class="brand-logo" src="data:image/png;base64,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" alt="Логотип">
+      <div class="brand-text">
+        <h1>Смены</h1>
+      </div>
+    </div>
+    <nav class="tabs" role="tablist">
+      <button class="tab-btn active" data-tab="calendar" role="tab" aria-selected="true">Календарь</button>
+      <button class="tab-btn" data-tab="salary" role="tab" aria-selected="false">Заработок</button>
+      <button class="tab-btn" data-tab="payments" role="tab" aria-selected="false">Платежи</button>
+    </nav>
+    <div class="topbar-actions">
+      <button class="btn ghost small" id="btn-reminders" title="Настройки напоминаний">🔔 Напоминания</button>
+      <button class="btn ghost small" id="btn-export" title="Скачать резервную копию данных">Экспорт</button>
+      <label class="btn ghost small" title="Загрузить резервную копию">
+        Импорт
+        <input type="file" id="input-import" accept="application/json" hidden>
+      </label>
+      <button class="btn ghost small" id="btn-dedupe" title="Найти и удалить повторяющиеся записи">Удалить дубликаты</button>
+      <button class="btn primary" id="btn-add-event">+ Добавить смену</button>
+    </div>
+  </header>
+
+  <div class="reminder-banner hidden" id="reminder-banner">
+    <span class="reminder-icon">🔔</span>
+    <span class="reminder-text" id="reminder-text"></span>
+    <button class="icon-btn" id="reminder-dismiss" aria-label="Закрыть уведомление" title="Закрыть">✕</button>
+  </div>
+
+  <!-- ===================== CALENDAR VIEW ===================== -->
+  <section class="view" id="view-calendar">
+
+    <aside class="filters" id="filters-calendar">
+      <div class="filters-head">Фильтры</div>
+
+      <div class="field">
+        <label>Поиск</label>
+        <input type="text" id="f-search" placeholder="проект, событие, заказчик…">
+      </div>
+
+      <div class="field">
+        <label>Проект</label>
+        <div class="multi" id="f-project" data-all="Все проекты" data-search="Поиск проекта…">
+          <button type="button" class="multi-btn"><span class="multi-label">Все проекты</span><span class="chev">▾</span></button>
+          <div class="multi-panel hidden"></div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Заказчик</label>
+        <div class="multi" id="f-customer" data-all="Все заказчики" data-search="Поиск: имя, фамилия, отчество…">
+          <button type="button" class="multi-btn"><span class="multi-label">Все заказчики</span><span class="chev">▾</span></button>
+          <div class="multi-panel hidden"></div>
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label>С</label>
+          <input type="date" id="f-from">
+        </div>
+        <div class="field">
+          <label>По</label>
+          <input type="date" id="f-to">
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Быстрый период</label>
+        <div class="chip-row">
+          <button class="chip" data-preset="today">Сегодня</button>
+          <button class="chip" data-preset="week">Эта неделя</button>
+          <button class="chip" data-preset="month">Этот месяц</button>
+          <button class="chip" data-preset="year">Этот год</button>
+        </div>
+      </div>
+
+      <button class="btn ghost full" id="btn-reset-filters">Сбросить фильтры</button>
+    </aside>
+
+    <main class="calendar-main">
+
+      <div class="view-toggle">
+        <button class="seg-btn active" data-view="month">Месяц</button>
+        <button class="seg-btn" data-view="list">Список</button>
+      </div>
+
+      <div class="cal-nav" id="cal-nav-month">
+        <button class="nav-arrow" id="cal-prev" aria-label="Предыдущий месяц" title="Предыдущий месяц">‹</button>
+        <h2 id="cal-month-label">Месяц Год</h2>
+        <button class="nav-arrow" id="cal-next" aria-label="Следующий месяц" title="Следующий месяц">›</button>
+        <button class="btn ghost small" id="cal-today">Сегодня</button>
+      </div>
+
+      <div class="calendar-scroll">
+        <div class="calendar-grid" id="calendar-grid"><!-- filled by JS --></div>
+      </div>
+
+      <div class="list-wrap hidden" id="list-wrap">
+        <table class="event-table event-list-table">
+          <thead>
+            <tr>
+              <th>Дата</th><th>Время</th><th>Проект</th><th>Заказчик</th><th>Место</th><th>Оплата</th><th></th>
+            </tr>
+          </thead>
+          <tbody id="list-body"></tbody>
+        </table>
+        <p class="empty-note hidden" id="list-empty">Ничего не найдено под текущие фильтры.</p>
+      </div>
+
+    </main>
+  </section>
+
+  <!-- ===================== SALARY VIEW ===================== -->
+  <section class="view hidden" id="view-salary">
+
+    <aside class="filters">
+      <div class="filters-head">Фильтры</div>
+
+      <div class="field">
+        <label>Проект</label>
+        <div class="multi" id="s-project" data-all="Все проекты" data-search="Поиск проекта…">
+          <button type="button" class="multi-btn"><span class="multi-label">Все проекты</span><span class="chev">▾</span></button>
+          <div class="multi-panel hidden"></div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Заказчик</label>
+        <div class="multi" id="s-customer" data-all="Все заказчики" data-search="Поиск: имя, фамилия, отчество…">
+          <button type="button" class="multi-btn"><span class="multi-label">Все заказчики</span><span class="chev">▾</span></button>
+          <div class="multi-panel hidden"></div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Статус оплаты</label>
+        <select id="s-status">
+          <option value="">Любой статус</option>
+          <option value="paid">Оплачено</option>
+          <option value="unpaid">Должны</option>
+        </select>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label>С</label>
+          <input type="date" id="s-from">
+        </div>
+        <div class="field">
+          <label>По</label>
+          <input type="date" id="s-to">
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Быстрый период</label>
+        <div class="chip-row">
+          <button class="chip" data-spreset="month">Этот месяц</button>
+          <button class="chip" data-spreset="quarter">Этот квартал</button>
+          <button class="chip" data-spreset="year">Этот год</button>
+          <button class="chip" data-spreset="all">Всё время</button>
+        </div>
+      </div>
+
+      <button class="btn ghost full" id="btn-reset-sfilters">Сбросить фильтры</button>
+    </aside>
+
+    <main class="salary-main">
+
+      <div class="summary-cards">
+        <div class="card">
+          <span class="card-label">Заработано за период</span>
+          <span class="card-value" id="sum-total">0 ₽</span>
+        </div>
+        <div class="card">
+          <span class="card-label">Оплачено</span>
+          <span class="card-value muted-green" id="sum-paid">0 ₽</span>
+        </div>
+        <div class="card">
+          <span class="card-label">Ожидает оплаты</span>
+          <span class="card-value muted-red" id="sum-unpaid">0 ₽</span>
+        </div>
+        <div class="card">
+          <span class="card-label">Рабочих дней</span>
+          <span class="card-value" id="sum-days">0</span>
+        </div>
+        <div class="card">
+          <span class="card-label">Средний доход за день</span>
+          <span class="card-value" id="sum-avg">0 ₽</span>
+        </div>
+      </div>
+
+      <div class="salary-grid">
+
+        <div class="panel">
+          <h3>По месяцам, <span id="chart-year-label"></span></h3>
+          <div class="bar-chart" id="month-chart"></div><p class="empty-note hidden" id="chart-currency-note"></p>
+        </div>
+
+        <div class="panel">
+          <h3>По проектам</h3>
+          <div class="table-scroll">
+            <table class="event-table compact">
+              <thead><tr><th>Проект</th><th>Заказчик</th><th>Событий</th><th>Сумма</th></tr></thead>
+              <tbody id="project-breakdown"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="panel wide">
+          <h3>По дням</h3>
+          <div class="table-scroll">
+            <table class="event-table compact">
+              <thead><tr><th>Дата</th><th>Проект</th><th>Заказчик</th><th>Сумма</th><th>Статус</th></tr></thead>
+              <tbody id="day-breakdown"></tbody>
+            </table>
+            <p class="empty-note hidden" id="salary-empty">За выбранный период доходов нет.</p>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </section>
+
+  <!-- ===================== PAYMENTS VIEW ===================== -->
+  <section class="view hidden" id="view-payments">
+
+    <aside class="filters">
+      <div class="filters-head">Фильтры</div>
+
+      <div class="field">
+        <label>Проект</label>
+        <div class="multi" id="p-project" data-all="Все проекты" data-search="Поиск проекта…">
+          <button type="button" class="multi-btn"><span class="multi-label">Все проекты</span><span class="chev">▾</span></button>
+          <div class="multi-panel hidden"></div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Заказчик</label>
+        <div class="multi" id="p-customer" data-all="Все заказчики" data-search="Поиск: имя, фамилия, отчество…">
+          <button type="button" class="multi-btn"><span class="multi-label">Все заказчики</span><span class="chev">▾</span></button>
+          <div class="multi-panel hidden"></div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Статус оплаты</label>
+        <select id="p-status">
+          <option value="">Любой статус</option>
+          <option value="unpaid">Должны</option>
+          <option value="paid">Оплачено</option>
+        </select>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label>С</label>
+          <input type="date" id="p-from">
+        </div>
+        <div class="field">
+          <label>По</label>
+          <input type="date" id="p-to">
+        </div>
+      </div>
+
+      <button class="btn ghost full" id="btn-reset-pfilters">Сбросить фильтры</button>
+    </aside>
+
+    <main class="payments-main">
+
+      <div class="summary-cards three">
+        <div class="card">
+          <span class="card-label">Должны выплатить</span>
+          <span class="card-value muted-red" id="pay-owed-total">0 ₽</span>
+        </div>
+        <div class="card">
+          <span class="card-label">Уже оплачено</span>
+          <span class="card-value muted-green" id="pay-paid-total">0 ₽</span>
+        </div>
+        <div class="card">
+          <span class="card-label">Проектов с долгом</span>
+          <span class="card-value" id="pay-owed-projects">0</span>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3>По проектам</h3>
+        <div class="table-scroll">
+          <table class="event-table compact">
+            <thead><tr><th>Проект</th><th>Заказчик</th><th>Оплачено</th><th>Осталось должны</th><th>Статус</th></tr></thead>
+            <tbody id="pay-project-table"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3>Ожидают оплаты</h3>
+        <div class="table-scroll">
+          <table class="event-table compact">
+            <thead><tr><th>Дата</th><th>Проект</th><th>Заказчик</th><th>Сумма</th><th>Оплачено</th></tr></thead>
+            <tbody id="pay-owed-list"></tbody>
+          </table>
+          <p class="empty-note hidden" id="pay-owed-empty">Задолженностей нет — всё оплачено 🎉</p>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3>Оплачено</h3>
+        <div class="table-scroll">
+          <table class="event-table compact">
+            <thead><tr><th>Дата</th><th>Проект</th><th>Заказчик</th><th>Сумма</th><th>Оплачено</th></tr></thead>
+            <tbody id="pay-paid-list"></tbody>
+          </table>
+          <p class="empty-note hidden" id="pay-paid-empty">Пока нет оплаченных записей.</p>
+        </div>
+      </div>
+
+    </main>
+  </section>
+
+</div>
+
+<!-- ===================== EVENT MODAL ===================== -->
+<div class="modal-backdrop hidden" id="modal-backdrop">
+  <div class="modal">
+    <div class="modal-head">
+      <h3 id="modal-title">Новая занятость</h3>
+      <button class="icon-btn" id="modal-close" aria-label="Закрыть окно" title="Закрыть">✕</button>
+    </div>
+    <form id="event-form">
+      <input type="hidden" id="ev-id">
+
+      <div class="field-row">
+        <div class="field">
+          <label>Дата *</label>
+          <input type="date" id="ev-date" required>
+        </div>
+        <div class="field">
+          <label>Начало</label>
+          <input type="time" id="ev-start">
+        </div>
+        <div class="field">
+          <label>Окончание</label>
+          <input type="time" id="ev-end">
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Проект</label>
+        <input type="text" id="ev-project" list="project-options" placeholder="Название проекта">
+        <datalist id="project-options"></datalist>
+      </div>
+
+      <div class="field">
+        <label>Заказчик</label>
+        <input type="text" id="ev-people" list="customer-options" placeholder="имя или компания заказчика" autocomplete="off">
+        <datalist id="customer-options"></datalist>
+      </div>
+
+      <div class="field">
+        <label>Место</label>
+        <input type="text" id="ev-location" placeholder="павильон, адрес, студия…">
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label>Оплата</label>
+          <input type="number" id="ev-payment" min="0" step="1" placeholder="0">
+        </div>
+        <div class="field">
+          <label>Валюта</label>
+          <input type="text" id="ev-currency" value="₽" maxlength="4">
+        </div>
+        <div class="field checkbox-field">
+          <label><input type="checkbox" id="ev-paid"> Уже оплачено</label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Заметки</label>
+        <textarea id="ev-notes" rows="2" placeholder="детали, реквизит, комментарии…"></textarea>
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" class="btn danger ghost hidden" id="btn-delete-event">Удалить</button>
+        <div class="modal-actions-right">
+          <button type="button" class="btn ghost" id="btn-event-ics">📅 В календарь (.ics)</button>
+          <button type="button" class="btn ghost" id="btn-cancel-event">Отмена</button>
+          <button type="submit" class="btn primary">Сохранить</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ===================== DAY PANEL ===================== -->
+<div class="modal-backdrop hidden" id="day-backdrop">
+  <div class="modal day-modal">
+    <div class="modal-head">
+      <h3 id="day-title">Дата</h3>
+      <button class="icon-btn" id="day-close" aria-label="Закрыть список дня" title="Закрыть">✕</button>
+    </div>
+    <div class="day-events" id="day-events"></div>
+    <button class="btn primary full" id="day-add">+ Добавить занятость на этот день</button>
+  </div>
+</div>
+
+<!-- ===================== REMINDERS SETTINGS ===================== -->
+<div class="modal-backdrop hidden" id="reminders-backdrop">
+  <div class="modal">
+    <div class="modal-head">
+      <h3>Напоминания</h3>
+      <button class="icon-btn" id="reminders-close" aria-label="Закрыть настройки напоминаний" title="Закрыть">✕</button>
+    </div>
+
+    <div class="field checkbox-field reminder-checkbox">
+      <label><input type="checkbox" id="notif-enabled"> Показывать уведомления браузера о событиях</label>
+    </div>
+
+    <div class="field">
+      <label>Напоминать за</label>
+      <select id="notif-minutes">
+        <option value="15">15 минут до начала</option>
+        <option value="30">30 минут до начала</option>
+        <option value="60">1 час до начала</option>
+        <option value="120">2 часа до начала</option>
+        <option value="180">3 часа до начала</option>
+        <option value="1440">1 день до начала</option>
+      </select>
+    </div>
+
+    <p class="reminder-hint">
+      Уведомления браузера работают, только пока эта вкладка открыта на вашем устройстве (это ограничение бесплатного статичного сайта без сервера). Для надёжных напоминаний даже при закрытом браузере — выгрузите события в свой обычный календарь телефона.
+    </p>
+
+    <button type="button" class="btn ghost full" id="btn-export-ics">📅 Экспортировать все события в .ics (Google/Apple/Outlook)</button>
+  </div>
+</div>
+
+<script src="js/app.js"></script>
+</body>
+</html>
